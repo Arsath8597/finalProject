@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSocket } from "../context/SocketProvider";
+import Navbar from "../userHome/Navbar";
+
 
 const LobbyScreen = () => {
   const [email, setEmail] = useState("");
@@ -33,10 +35,15 @@ const LobbyScreen = () => {
   }, [socket, handleJoinRoom]);
 
   return (
-    <div>
-      <h1>Lobby</h1>
+    <div className=" bg-gradient-to-br from-rose-400 to-white w-[100vw] h-[100vh]">
+      <Navbar/>
+    <div className="flex justify-center items-center">
+      
+      <div>
+      <h1 className="font-bold mt-32 text-4xl my-5">Create Vitual Room</h1>
       <form onSubmit={handleSubmitForm}>
-        <label htmlFor="email">Email ID</label>
+      <label className="font-semibold text-xl " htmlFor="room">Room Password</label>
+        <label className="font-semibold text-xl my-10" htmlFor="email">Room Email</label>
         <input
           type="email"
           id="email"
@@ -44,7 +51,7 @@ const LobbyScreen = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
-        <label htmlFor="room">Room Number</label>
+       
         <input
           type="text"
           id="room"
@@ -52,9 +59,10 @@ const LobbyScreen = () => {
           onChange={(e) => setRoom(e.target.value)}
         />
         <br />
-        <button>Join</button>
+        <button className="py-2 rounded-xl font-semibold px-8 bg-blue-600">Join</button>
       </form>
-    </div>
+      </div>
+    </div></div>
   );
 };
 

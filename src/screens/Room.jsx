@@ -2,6 +2,8 @@ import React, { useEffect, useCallback, useState } from "react";
 import ReactPlayer from "react-player";
 import peer from "../service/peer";
 import { useSocket } from "../context/SocketProvider";
+import Navbar from "../userHome/Navbar";
+
 
 const RoomPage = () => {
   const socket = useSocket();
@@ -110,35 +112,45 @@ const RoomPage = () => {
   ]);
 
   return (
-    <div>
-      <h1>Room Page</h1>
+    <div  className=" bg-gradient-to-br from-rose-400 to-white w-[100vw]">
+<Navbar/>
+      <h1 className="text-2xl font-semibold">Vitual Room</h1>
       <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
-      {myStream && <button onClick={sendStreams}>Send Stream</button>}
-      {remoteSocketId && <button onClick={handleCallUser}>CALL</button>}
+      {myStream && <button className="mr-5" onClick={sendStreams}>Send our Stream</button>}
+      {remoteSocketId && (
+  <button className=" bg-green-600
+   text-black font-bold py-2 px-4 rounded" onClick={handleCallUser}>
+    CALL
+  </button>
+)}
+      <div className="flex flex-col justify-center items-center">
       {myStream && (
-        <>
-          <h1>My Stream</h1>
+        
+        <div className="absolute flex justify-start border-white border-12 z-50">
+       
           <ReactPlayer
             playing
             muted
             height="100px"
             width="200px"
+            style={{ border: '2px solid white', marginRight:"430px" ,marginBottom:"350px"}}
             url={myStream}
           />
-        </>
+        </div>
       )}
       {remoteStream && (
-        <>
-          <h1>Remote Stream</h1>
+        <div className="relative flex-none">
+          {/* <h1>Remote Stream</h1> */}
           <ReactPlayer
+          
             playing
             muted
-            height="100px"
-            width="200px"
+            height="500px"
+            width="700px"
             url={remoteStream}
           />
-        </>
-      )}
+        </div>
+      )}</div>
     </div>
   );
 };

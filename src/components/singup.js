@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Navbar from "../pages/Navbar";
 export default function Signup() {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -36,14 +36,15 @@ export default function Signup() {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center h-screen w-screen">
-            <div className="bg-gray-200 w-[500px] h-[400px] rounded-xl">
-                <h1 className="flex justify-center mb-10 font-semibold text-2xl">Sign up</h1>
+        <div className="flex bg-gradient-to-br from-rose-400 to-white flex-col justify-center items-center h-screen w-screen">
+                   <Navbar/>
+                          <div className="mt-24 bg-white bg-opacity-20  w-[500px] h-[500px] rounded-xl">
+                <h1  className="flex  justify-center mb-10 font-bold text-3xl">SING UP</h1>
                 <form onSubmit={handleSubmit}>
-                    <div className="my-10">
-                        <label className="m-5 text-xl">First Name</label>
+                    <div className="my-8 flex justify-center">
+                       
                         <input
-                            className="text-xl"
+                            className="text-xl py-2 w-[80%] bg-blue-200 font-semibold rounded-xl"
                             type="text"
                             name='fname'
                             value={fname}
@@ -51,10 +52,10 @@ export default function Signup() {
                             placeholder="First name"
                         />
                     </div>
-                    <div className="my-10">
-                        <label className="m-5 text-xl">Last Name</label>
+                    <div className="my-8 flex justify-center">
+                        
                         <input
-                            className="text-xl"
+                            className="text-xl py-2 w-[80%] bg-blue-200 font-semibold rounded-xl"
                             type="text"
                             name='lname'
                             value={lname}
@@ -62,10 +63,10 @@ export default function Signup() {
                             placeholder="Last name"
                         />
                     </div>
-                    <div className="my-10">
-                        <label className="m-5 text-xl">Email</label>
+                    <div className="my-8 justify-center flex">
+                       
                         <input
-                            className="text-xl"
+                          className="text-xl py-2 w-[80%] bg-blue-200 font-semibold rounded-xl"
                             type="email"
                             name='email'
                             value={email}
@@ -73,10 +74,10 @@ export default function Signup() {
                             placeholder="Enter Email"
                         />
                     </div>
-                    <div className="my-10">
-                        <label className="m-5 text-xl">Password</label>
+                    <div className="my-8 justify-center flex">
+
                         <input
-                            className="text-xl"
+                           className="text-xl py-2 w-[80%] bg-blue-200 font-semibold rounded-xl"
                             type="password"
                             name='password'
                             value={password}
@@ -88,8 +89,8 @@ export default function Signup() {
                         <button type="submit" className="bg-black text-white w-[50%] rounded-xl p-2">Submit</button>
                     </div>
                 </form>
-                <p className="flex justify-end mr-32 text-blue mt-10">
-                    Already registered? <a href="/login" className="text-blue">Sign In</a>
+                <p className="flex font-semibold text-lg justify-end mr-10 text-blue mt-2">
+                    Already registered? &nbsp;&nbsp;<a href="/login" className=" text-blue-600">Sign In</a>
                 </p>
             </div>
         </div>
