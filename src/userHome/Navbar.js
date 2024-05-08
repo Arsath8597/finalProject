@@ -17,7 +17,7 @@ import img1 from '../image/generic-user-icon-13.jpg'
 
     useEffect(() => {
         const handleScroll = () => {
-          setIsSticky(window.scrollY > 100); // Update state after 100vh scroll
+          setIsSticky(window.scrollY > 10); // Update state after 100vh scroll
         };
     
         window.addEventListener('scroll', handleScroll);

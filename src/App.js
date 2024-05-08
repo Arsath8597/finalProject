@@ -11,7 +11,10 @@ import Sample from './components/sample'
 import Landing from "./container/Landing";
 import Calender from './components/Calender'
 import UserDetails from "./components/userdetails";
-
+import User from './sample/user'
+import CreateMeeting from "./userHome/Pages/createMeeting";
+import UpcomingMeeting from "./screens/upcomingMeeting";
+import Meeting from './userHome/Pages/meeting'
 function App() {
   return (
   
@@ -27,10 +30,12 @@ function App() {
    <Route path="/calender" element={<Calender />} />
    <Route path="/sample" element={<Sample />} />
    <Route path="/userdetails" element={<UserDetails />} />
-        <Route path="/room/:roomId" element={<RoomPage />} />
+        <Route path="/room/:roomId" element={<RoomPage />} />    
+        <Route path="/user" element={<User />} />    
+        <Route path="/createMeeting" element={<CreateMeeting />} /> 
+        <Route path="/upcomingMeeting" element={<UpcomingMeeting />} /> 
+        <Route path="/meet" element={<Meeting />} />
 
-
-      
      </Routes>
     </div>
    

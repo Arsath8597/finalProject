@@ -42,19 +42,21 @@ const LobbyScreen = () => {
       <div>
       <h1 className="font-bold mt-32 text-4xl my-5">Create Vitual Room</h1>
       <form onSubmit={handleSubmitForm}>
-      <label className="font-semibold text-xl " htmlFor="room">Room Password</label>
+ 
         <label className="font-semibold text-xl my-10" htmlFor="email">Room Email</label>
         <input
+   className="w-full py-2 px-4 rounded-lg shadow-xl"
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
-       
+        <label className="font-semibold text-xl " htmlFor="room">Room Password</label>
         <input
           type="text"
           id="room"
+          className="w-full py-2 px-4 rounded-lg shadow-xl"
           value={room}
           onChange={(e) => setRoom(e.target.value)}
         />
