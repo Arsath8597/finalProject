@@ -15,6 +15,10 @@ import User from './sample/user'
 import CreateMeeting from "./userHome/Pages/createMeeting";
 import UpcomingMeeting from "./screens/upcomingMeeting";
 import Meeting from './userHome/Pages/meeting'
+import Admin from'./AdminHome/Pages/Orders';
+import Dashboard from "./AdminHome/Pages/Dashbaord";
+import Inventory from "./AdminHome/Pages/Inventory";
+import Customers from "./AdminHome/Pages/Customers";
 function App() {
   return (
   
@@ -35,6 +39,10 @@ function App() {
         <Route path="/createMeeting" element={<CreateMeeting />} /> 
         <Route path="/upcomingMeeting" element={<UpcomingMeeting />} /> 
         <Route path="/meet" element={<Meeting />} />
+         <Route path="/dashbaord" element={<Dashboard />} />
+         <Route path="/inventory" element={<Inventory />} />
+         <Route path="/customers" element={<Customers/>} />
+         <Route path="/admin" element={<Admin/>} />
 
      </Routes>
     </div>

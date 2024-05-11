@@ -97,7 +97,6 @@ const handleClick = () => {
   return (
     <div className='flex flex-col justify-center items-center'>
         <h1 className='text-center text-3xl mb-8 font-bold'>Schedule Meeting</h1>
-        
         <div className='flex '>
           <a href='/Meeting'>
           <div className=' bg-blue-400 cursor-pointer text-white text-center w-[220px] h-[170px] rounded-2xl ml-10 p-2'>

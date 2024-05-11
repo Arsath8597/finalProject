@@ -1,66 +1,38 @@
-import React, { useState } from 'react';
 
-const App = () => {
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(false);
+import React from "react";
+import { Bar } from "react-chartjs-2";
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:5000/api/dates', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ date, time }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Server error');
-      }
-
-      const data = await response.json();
-      console.log('Date created:', data);
-      setSuccess(true);
-      setDate('');
-      setTime('');
-      setError(null);
-    } catch (err) {
-      console.error('Error creating date:', err.message);
-      setError(err.message);
-    }
+const BarChart = () => {
+  // Sample data (replace with your actual data)
+  const data = {
+    labels: ["May 1", "May 2", "May 3", "May 4", "May 5"],
+    datasets: [
+      {
+        label: "User Registration Count",
+        backgroundColor: "rgb(54, 162, 235)",
+        borderColor: "rgb(54, 162, 235)",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(54, 162, 235, 0.7)",
+        hoverBorderColor: "rgba(54, 162, 235, 1)",
+        data: [10, 15, 20, 18, 25],
+      },
+    ],
   };
 
   return (
-    <div>
-      <h1>Create Date</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Date:
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Time:
-          <input
-            type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-      {error && <p>Error: {error}</p>}
-      {success && <p>Date created successfully!</p>}
+    <div className="w-full max-w-xl mx-auto mt-8">
+      <Bar
+        data={data}
+        options={{
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        }}
+      />
     </div>
   );
 };
 
-export default App;
+export default BarChart;// DoughnutChart.js

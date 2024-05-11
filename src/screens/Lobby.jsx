@@ -39,13 +39,13 @@ const LobbyScreen = () => {
       <Navbar/>
     <div className="flex justify-center items-center">
       
-      <div>
+      <div className="">
       <h1 className="font-bold mt-32 text-4xl my-5">Create Vitual Room</h1>
       <form onSubmit={handleSubmitForm}>
  
         <label className="font-semibold text-xl my-10" htmlFor="email">Room Email</label>
         <input
-   className="w-full py-2 px-4 rounded-lg shadow-xl"
+   className="w-full py-2 my-3 px-4 rounded-lg shadow-xl"
           type="email"
           id="email"
           value={email}
@@ -56,12 +56,12 @@ const LobbyScreen = () => {
         <input
           type="text"
           id="room"
-          className="w-full py-2 px-4 rounded-lg shadow-xl"
+          className="w-full my-2 py-2 px-4 rounded-lg shadow-xl"
           value={room}
           onChange={(e) => setRoom(e.target.value)}
         />
         <br />
-        <button className="py-2 rounded-xl font-semibold px-8 bg-blue-600">Join</button>
+        <button className="py-2 rounded-xl mt-4 font-semibold px-8 text-white text-xl bg-blue-600">Join</button>
       </form>
       </div>
     </div></div>

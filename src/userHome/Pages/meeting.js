@@ -1,8 +1,18 @@
-import React, { useState, useEffect } from 'react';
 
-const Meeting = () => {
-  const [meetingId, setMeetingId] = useState('');
-  const [password, setPassword] = useState('');
+import React, { useState, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSocket } from "../../context/SocketProvider";
+import Navbar from "../Navbar";
+
+
+const LobbyScreen = () => {
+
+
+  const [email, setEmail] = useState("");
+  const [room, setRoom] = useState("");
+
+  const socket = useSocket();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Get the meeting ID and password from the URL parameters
@@ -12,60 +22,74 @@ const Meeting = () => {
     
     // Set the meeting ID and password in the component state
     if (idFromUrl) {
-      setMeetingId(idFromUrl);
+      setEmail(idFromUrl);
     }
     if (passwordFromUrl) {
-      setPassword(passwordFromUrl);
+      setRoom(passwordFromUrl);
     }
-  }, []); // Empty dependency array ensures useEffect runs only once when the component mounts
+  }, []); 
 
-  const handleJoinMeeting = (event) => {
-    event.preventDefault();
-    // Add your logic here to join the meeting using the provided meeting ID and password
-    console.log('Joining meeting with ID:', meetingId, 'and password:', password);
-    // For demonstration purposes, let's just display a message
-    alert(`Joining meeting with ID: ${meetingId} and password: ${password}`);
-  };
+ 
+  const handleSubmitForm = useCallback(
+    (e) => {
+      alert(`Joining meeting with ID: ${email} and password: ${room}`);
+      e.preventDefault();
+      socket.emit("room:join", { email, room });
+    },
+    [email, room, socket]
+    
+  );
+
+  const handleJoinRoom = useCallback(
+    (data) => {
+      const { email, room } = data;
+      navigate(`/room/${room}`);
+    },
+    [navigate]
+  );
+
+  useEffect(() => {
+    socket.on("room:join", handleJoinRoom);
+    return () => {
+      socket.off("room:join", handleJoinRoom);
+    };
+  }, [socket, handleJoinRoom]);
 
   return (
-    <div className='w-full h-full bg-gradient-to-br from-rose-400 to-white'>
-      <div className='container mx-auto px-4'>
-        <h1 className='text-3xl font-bold text-center mt-8'>Join Meeting</h1>
-        <form onSubmit={handleJoinMeeting} className='max-w-md mx-auto mt-8'>
-          <div className='mb-4'>
-            <label htmlFor='meetingId' className='block text-gray-700 font-bold mb-2'>Meeting ID</label>
-            <input
-              type='text'
-              id='meetingId'
-              value={meetingId}
-              onChange={(e) => setMeetingId(e.target.value)}
-              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-              placeholder='Enter meeting ID'
-              required
-            />
-          </div>
-          <div className='mb-6'>
-            <label htmlFor='password' className='block text-gray-700 font-bold mb-2'>Password</label>
-            <input
-              type='password'
-              id='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-              placeholder='Enter password'
-              required
-            />
-          </div>
-          <button
-            type='submit'
-            className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-          >
-            Join Meeting
-          </button>
-        </form>
+    <div className=" bg-gradient-to-br from-rose-400 to-white w-[100vw] h-[100vh]">
+      <Navbar/>
+    <div className="flex justify-center items-center">
+      
+      <div>
+      <h1 className="font-bold mt-32 text-4xl my-5">Create Vitual Room</h1>
+      <form onSubmit={handleSubmitForm}>
+ 
+        <label className="font-semibold text-xl my-10" htmlFor="email">Room Email</label>
+        <input
+   className="w-full py-2 px-4 rounded-lg shadow-xl"
+          type="text"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <br />
+       
+        <label className="font-semibold text-xl " htmlFor="room">Room Password</label>
+        <input
+          type="text"
+          id="room"
+          className="w-full py-2 px-4 rounded-lg shadow-xl"
+          value={room}
+          onChange={(e) => setRoom(e.target.value)}
+          required
+        />
+        <br />
+        <button className="py-2 rounded-xl mt-5 font-semibold px-8 bg-blue-600">Join</button>
+      </form>
       </div>
-    </div>
+    </div></div>
   );
 };
 
-export default Meeting;
+export default LobbyScreen;
