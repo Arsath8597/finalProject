@@ -137,7 +137,7 @@ const [order ,setOrder]=useState("");
     <Space size={20} direction="vertical">
     <div  className="px-20 mt-[-30px]  text-ml shadow-black font-serif cursor-pointer">
       <img onClick={handleOpenPopup} src={Logo} alt="Logo" className="w-16 pl-2" />
-      <p>Add Admin</p></div>
+      <p>Add Shedule</p></div>
       
     {popupOpen  && (
   

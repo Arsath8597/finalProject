@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export default function Login(){
  const [email,setEmail]=useState('')
@@ -25,19 +27,54 @@ export default function Login(){
       .then((data) => {
         console.log(data, "userRegister");
         if (data.status == "ok") {
-          alert("login successful");
+    
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
-
-          window.location.href = "./adminhome";
+          confirmAlert({
+            title: 'Alert',
+            message: 'Register successfully',
+            buttons: [
+              {
+                label: 'OK',
+                onClick: () => {
+                
+                  // Redirect to another page after clicking "OK"
+                  window.location.href = '/dashbaord';
+                }
+                
+              },
+            
+            ]
+          });
+       
         }
+        else{
+          confirmAlert({
+            title: 'Alert',
+            message: 'something went wrong',
+            buttons: [
+              {
+                label: 'OK',
+                onClick: () => {
+                
+                  // Redirect to another page after clicking "OK"
+                  window.location.href = '/adminlogin';
+                }
+                
+              },
+            
+            ]
+          });
+       
+        }
+        
       });
   }
     return(
         <div className="flex flex-col bg-gradient-to-r from-blue-500 to-green-500 justify-center items-center h-[100vh] w-[100vw]"> 
           <form onSubmit={handleSubmit}>
               <div className=" bg-white bg-opacity-20 w-[500px] h-[400px] rounded-xl">
-            <h1 className="flex  justify-center mb-10 font-bold text-3xl">SING IN</h1>
+            <h1 className="flex  justify-center mb-10 font-bold text-3xl">ADMIN SING IN</h1>
             <div className="my-10 flex items-center justify-center">
     
                 <input onChange={(e)=>{setEmail(e.target.value)}}  className="text-lg py-2 w-[80%] bg-blue-200  rounded-xl"  type="email" placeholder="  Enter Email"/>
@@ -60,8 +97,9 @@ export default function Login(){
             </div>
           
             
-              <p className="font-lg mt-10 w-[50%] h-10 ml-5 flex ">
-                <a href="/login" className=" text-blue-600 font-semibold text-2xl">As User</a>
+               
+            <p className="font-lg  ml-5  flex ">
+                <a href="/login" className=" text-blue-600 font-semibold text-xl bg-white rounded-3xl px-5 py-4 hover:font-bold"> User</a>
             </p>
             </div></form>
         </div>

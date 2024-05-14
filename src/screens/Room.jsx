@@ -3,7 +3,8 @@ import ReactPlayer from "react-player";
 import peer from "../service/peer";
 import { useSocket } from "../context/SocketProvider";
 import Navbar from "../userHome/Navbar";
-
+import { FaVideo } from 'react-icons/fa';
+import { FaMicrophone } from 'react-icons/fa';
 
 const RoomPage = () => {
   const socket = useSocket();
@@ -11,12 +12,13 @@ const RoomPage = () => {
   const [myStream, setMyStream] = useState();
   const [remoteStream, setRemoteStream] = useState();
 
+
   const handleUserJoined = useCallback(({ email, id }) => {
     console.log(`Email ${email} joined room`);
     setRemoteSocketId(id);
   }, []);
 
-  const handleCallUser = useCallback(async () => {
+  const handleCallUser = useCallback(async () => {  
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
@@ -40,6 +42,8 @@ const RoomPage = () => {
     },
     [socket]
   );
+  
+
 
   const sendStreams = useCallback(() => {
     for (const track of myStream.getTracks()) {
@@ -110,20 +114,44 @@ const RoomPage = () => {
     handleNegoNeedIncomming,
     handleNegoNeedFinal,
   ]);
+  
+
+  // Function to handle the "call cut" action
+  const handleCallCut = () => {
+    // Implement logic to disconnect the call
+    // For example:
+    setMyStream(null)
+    setRemoteStream(null)
+    setRemoteSocketId(null)
+  };
+
+  const Vedio = () => {
+    // Implement logic to disconnect the call
+    // For example:
+    setMyStream(null)
+   
+  };
+
 
   return (
-    <div  className=" bg-gradient-to-br from-rose-400 to-white w-[100vw]">
+    <div  className=" bg-gradient-to-br h-[100vh] overflow-hidden  from-rose-400 to-white w-[100vw]">
 <Navbar/>
-      <h1 className="text-2xl font-semibold">Vitual Room</h1>
+<h1 className="none">.</h1>
+<div className="mt-20 font-serif flex flex-col text-center items-center  justify-center ">
+      <h1 className="text-3xl font-semibold">Vitual Room</h1>
       <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
-      {myStream && <button className="mr-5" onClick={sendStreams}>Send our Stream</button>}
+      </div >
+      <div className="flex flex-col ml-20 text-xl"><div>
+      {myStream && <button className="" onClick={sendStreams}>Send our Stream</button>}</div>
       {remoteSocketId && (
+      <div>  
   <button className=" bg-green-600
-   text-black font-bold py-2 px-4 rounded" onClick={handleCallUser}>
-    CALL
-  </button>
-)}
-      <div className="flex flex-col justify-center items-center">
+   text-white text-xl w-30 py-3 px-6  rounded-2xl ml-3" onClick={handleCallUser}>
+    Connect
+  </button></div>
+  
+)}</div>
+      <div className="flex  justify-center mt-[-140px] items-center">
       {myStream && (
         
         <div className="absolute flex justify-start border-white border-12 z-50">
@@ -133,7 +161,7 @@ const RoomPage = () => {
             muted
             height="100px"
             width="200px"
-            style={{ border: '2px solid white', marginRight:"430px" ,marginBottom:"350px"}}
+            style={{ border: '2px solid white', marginRight:"400px" ,marginTop:"-50px",marginBottom:"350px"}}
             url={myStream}
           />
         </div>
@@ -146,9 +174,16 @@ const RoomPage = () => {
             playing
             muted
             height="500px"
+            style={{ border: '2px solid white'}}
             width="700px"
             url={remoteStream}
           />
+          <div className="z-50 mt-[-50px] flex justify-center  w-full  absolute">
+            <button onClick={handleCallCut} className="bg-red-600 text-white px-5 py-2 rounded-xl">End</button>
+            <button onClick={Vedio} className="bg-red-600 mx-10 text-white px-5 py-2 rounded-xl"> <FaVideo /></button>
+            <button  className="bg-red-600 mx-10 text-white px-5 py-2 rounded-xl"> <FaMicrophone/></button>
+        \
+          </div>
         </div>
       )}</div>
     </div>

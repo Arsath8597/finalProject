@@ -19,9 +19,9 @@ function AppHeader() {
   }, []);
 
   return (
-    <div className="AppHeader z-50 flex items-center justify-between mb-10 bg-white px-10 shadow-2xl bg-opacity-90 rounded-lg">
+    <div className="AppHeader z-50 flex items-center justify-evenly mb-10 bg-white px-10 shadow-2xl bg-opacity-90 rounded-lg">
       
-      <Typography.Title>Aamir's Dashboard</Typography.Title>
+      <Typography.Title>Admin Dashboard</Typography.Title>
       <Space>
         <Badge count={comments.length} dot>
           <MailOutlined

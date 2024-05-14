@@ -12,6 +12,7 @@ function Customers() {
   const [loading, setLoading] = useState(false);
   const [dataSource, setDataSource] = useState([]);
   const [user,setUser]=useState([])
+  const [userDelete,setUserDelete]=useState("")
 
   const [fname,setFname]=useState('')
   const [lname,setLname]=useState('')
@@ -28,6 +29,12 @@ const [popUpOpen,setPopupOpen]=useState(false)
       setLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(fname, lname, email, password);
@@ -57,7 +64,24 @@ const [popUpOpen,setPopupOpen]=useState(false)
         });
 };
 
-  
+
+
+
+ 
+const handleDelete = async (userId) => {
+  try {
+    const response = await fetch(`http://localhost:5000/deleteUser/${userId}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete user');
+    }
+    // Refresh user list after successful deletion
+    fetchUsers();
+  } catch (error) {
+    console.error('Error deleting user:', error);
+  }
+};
   const handleOpen=()=>{
     setPopup(true);
    }
@@ -68,7 +92,7 @@ const [popUpOpen,setPopupOpen]=useState(false)
     setPopupOpen(false)
   }
   
-useEffect(()=>{
+const fetchUsers=()=>{
   fetch('http://localhost:5000/getAlluser',{
     method:"GET",
     headers:{
@@ -87,7 +111,7 @@ useEffect(()=>{
   .catch(error=>{
     console.error('error fetching Data',error)
   })
-},[])
+}
 
   return (
     <div className="bg-gradient-to-br from-rose-400 to-white'">
@@ -99,7 +123,7 @@ useEffect(()=>{
     <div>
       <div  className="px-20 mt-[-30px] text-ml shadow-black font-serif cursor-pointer">
       <img onClick={handleOpen} src={Logo} alt="Logo" className="w-16 pl-2" />
-      <p>Add Admin</p></div>
+      <p>Add User</p></div>
       {popup && (
       <form onSubmit={handleSubmit}  className="fixed top-0 left-0 w-full h-full bg-gray-400 bg-opacity-60 flex justify-center items-center z-50">
        <div className="flex flex-col bg-white p-10 rounded-s-xl ">
@@ -155,12 +179,12 @@ useEffect(()=>{
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-        {user.map((adminUser,index)=>
-            <tr key={index}>
+        {user.map((adminUser)=>
+            <tr key={adminUser.id}>
              <td className="px-5 text-lg py-4  ">{adminUser.fname}</td>
              <td className="px-5 text-lg py-4  ">{adminUser.lname}</td>
              <td className="px-5 text-lg py-4  ">{adminUser.email}</td>
-             <td className=""><button className="bg-red-600 px-3 py-2 mx-3 font-sans hover:bg-red-400 text-white rounded-xl">Delete</button>
+             <td className=""><button className="bg-red-600 px-3 py-2 mx-3 font-sans hover:bg-red-400 text-white rounded-xl"onClick={() => handleDelete(adminUser._id)}>Delete</button>
              <button className="bg-blue-500 px-5 py-2 mx-3 font-sans hover:bg-blue-300 text-white rounded-xl">Edit</button>
              </td>
             </tr>

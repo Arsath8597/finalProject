@@ -15,10 +15,11 @@ import User from './sample/user'
 import CreateMeeting from "./userHome/Pages/createMeeting";
 import UpcomingMeeting from "./screens/upcomingMeeting";
 import Meeting from './userHome/Pages/meeting'
-import Admin from'./AdminHome/Pages/Orders';
+import Admin from'./AdminHome/Pages/Admin';
 import Dashboard from "./AdminHome/Pages/Dashbaord";
-import Inventory from "./AdminHome/Pages/Inventory";
+import Inventory from "./AdminHome/Pages/Meeting";
 import Customers from "./AdminHome/Pages/Customers";
+
 function App() {
   return (
   
@@ -28,7 +29,7 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/adminlogin" element={<AdminLogin/>}/>
       <Route path="/adminhome" element={<AdminHome/>}/>
-      <Route path="/sinup" element={<Singup/>}/>
+      <Route path="/singup" element={<Singup/>}/>
       <Route path="/userhome" element={<UserHome/>}/>
    <Route path="/Meeting" element={<LobbyScreen />} />
    <Route path="/calender" element={<Calender />} />

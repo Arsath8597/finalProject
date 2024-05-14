@@ -3,7 +3,7 @@ import React,{useEffect} from 'react'
 import Create from '../image/dashboard1.png'
 import Mymeeting from '../image/dashboard2.png'
 
-
+import Service from './Service'
 import Navbar from './Navbar'
 import Home from './Home'
 import Meeting from './Meeting'
@@ -39,14 +39,14 @@ export const Userlogin = () => {
 
    
   return (
-    <div >
-           <Navbar/>
-        <Home />
+    <div className='overflow-x-hidden'>
+        <Navbar/>
+        <Home/>
         <About/>
         <Meeting/>
-       <Contact/>
-       <Footer/>
-      
+        <Service/>
+        <Contact/>
+        <Footer/>
     </div>
   )
 }

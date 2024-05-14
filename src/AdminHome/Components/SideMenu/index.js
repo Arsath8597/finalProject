@@ -45,7 +45,7 @@ function SideMenu() {
             icon: <ShoppingCartOutlined />,
           },
           {
-            label: "Customers",
+            label: "Users",
             key: "/customers",
             icon: <UserOutlined />,
           },

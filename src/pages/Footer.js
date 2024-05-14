@@ -4,6 +4,7 @@ import {
   FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
+import Logo from '../assets/Lg.png'
 
 const Footer = () => {
   const socialLinks = [
@@ -38,12 +39,12 @@ const Footer = () => {
         <div className="  ">
           <div className="footer-img flex items-center">
             <img
-              src={"https://i.imgur.com/520zDfd.png"}
+              src={Logo}
               alt=""
               className="w-16 h-auto"
             />
             <span className="text-3xl font-bold pl-2 text-white">
-              Company name
+              VS Platform
             </span>
           </div>
           <div className="infos text-gray-400">

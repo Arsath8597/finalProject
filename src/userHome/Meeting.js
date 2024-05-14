@@ -3,7 +3,7 @@ import CreateMeeting from './Pages/createMeeting';
 
 export const Meeting = () => {
   return (
-    <div>
+    <div id='meeti'>
       <CreateMeeting/>
     </div>
   )
@@ -11,9 +11,6 @@ export const Meeting = () => {
 
 
 export default Meeting;
-
-
-
 
 
 

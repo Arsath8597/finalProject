@@ -96,27 +96,27 @@ const handleClick = () => {
 
   return (
     <div className='flex flex-col justify-center items-center'>
-        <h1 className='text-center text-3xl mb-8 font-bold'>Schedule Meeting</h1>
-        <div className='flex '>
+        <h1 className='text-center text-3xl mb-8 font-bold'> Meeting</h1>
+        <div className='lg:flex '>
           <a href='/Meeting'>
-          <div className=' bg-blue-400 cursor-pointer text-white text-center w-[220px] h-[170px] rounded-2xl ml-10 p-2'>
+          <div className=' bg-blue-400 my-5 lg:my-0 cursor-pointer text-white text-center w-[220px] h-[170px] rounded-2xl ml-10 p-2'>
           <img alt='new Meeting' className='bg-slate-500 p-1 rounded-xl mb-8' src={NewMeeting}/>
             <h1 className='font-semibold text-xl  mb-1'>New Meeting</h1>
             <p>Start and instant Meeting</p>
             
           </div></a>
-          <div onClick={handlePopup} className=' bg-blue-400 cursor-pointer text-white text-center w-[220px] h-[170px] rounded-2xl ml-10 p-2'>
+          <div onClick={handlePopup} className=' my-5 lg:my-0 bg-blue-400 cursor-pointer text-white text-center w-[220px] h-[170px] rounded-2xl ml-10 p-2'>
           <img alt='joinMeeting' className='bg-slate-500 p-1 rounded-xl mb-8' src={JoinMeeting}/>
             <h1 className='font-semibold text-xl  mb-1'>Join Meeting</h1>
             <p>Via inviation link</p>
             
           </div>
-          <div onClick={handleOpenPopup} className=' bg-blue-400 cursor-pointer text-white text-center w-[220px] h-[170px] rounded-2xl ml-10 p-2'>
+          <div onClick={handleOpenPopup} className=' my-5 lg:my-0 bg-blue-400 cursor-pointer text-white text-center w-[220px] h-[170px] rounded-2xl ml-10 p-2'>
           <img alt='shedule' className='bg-slate-500 p-1 rounded-xl mb-8' src={Shedule}/>
             <h1 className='font-semibold text-xl  mb-1'>Schedule Meeting</h1>
             <p>Plan Your Meeting Schedule</p>
           </div><a href='upcomingMeeting'>
-          <div onClick={handleOpenPopup} className=' bg-blue-400 cursor-pointer text-white text-center w-[220px] h-[170px] rounded-2xl ml-10 p-2'>
+          <div className=' my-5 lg:my-0 bg-blue-400 cursor-pointer text-white text-center w-[220px] h-[170px] rounded-2xl ml-10 p-2'>
           <img alt='Times' className='bg-slate-500 p-1 rounded-xl mb-8' src={NewMeeting}/>
             <h1 className='font-semibold text-xl  mb-1'>Upcoming Meeting</h1>
             <p>Start and instant Meeting</p>

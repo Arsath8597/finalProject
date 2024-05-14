@@ -30,25 +30,19 @@ import img1 from '../image/generic-user-icon-13.jpg'
         window.location.href = "./login";
       };
   return (
-    <div  className={`fixed top-0 left-0 w-full px-4 py-2 transition duration-300 ease-in-out z-10 ${
-        isSticky ? 'bg-gray-800  h-20 text-white shadow-md' : 'bg-transparent shadow-xl'
-      }`}>
-    <div className='flex w-[100vw] justify-between items-center uppercase'>
-    <div className='justify-center items-center flex'>
+    <div  className={`fixed top-0 left-0 w-full lg:px-4 py-2 transition duration-300 ease-in-out z-10 ${
+      isSticky ? 'bg-gray-300  h-20 text-black shadow-md' : 'bg-transparent shadow-xl'
+    }`}>
+    <div className='flex w-[100vw] lg:px-10 justify-between items-center uppercase'>
+      <a href='userhome'>
+    <div className='cursor-pointer items-center flex'>
         <img className='w-[120px]' src={Logo} alt='Logo'/>
         <h1 className='text-3xl font-semibold text-white'>VS Platform</h1>
-    </div>
+    </div></a>
     <ul className='lg:flex hidden   items-center mr- text-lg font-semibold'>
-        {/* {['Home','About','Project','Hero','Work'].map((item)=>(
-            <li className='mx-10 hover:text-blue-600' key={`link-${item}`}>
-                
-                <div/>
-                <a className=' transition duration-300' href={`#${item}`}>{item}</a>
-            </li>
-        ))} */}
         <li className='mx-10 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/#UHome'>Home</a></li>
         <li className='mx-10 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/#UHeader'>About</a></li>
-        <li className='mx-10 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/#UMeeting'>Meeting</a></li>
+        <li className='mx-10 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/userhome/meeti'>Meeting</a></li>
         <li className='mx-10 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/#UMeeting'>Project</a></li>
         <li className='mx-10 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/#UContact'>Contact</a></li>
         <motion.button type='button' onClick={toggleDropDown} className='    mr-20 rounded-xl mx-10 transition duration-300 cursor-pointer'     whileTap={{ scale: 0.7 }}> <img
@@ -94,23 +88,30 @@ import img1 from '../image/generic-user-icon-13.jpg'
                         className='w-80'
                         whileInView={{x:[300,0]}}
                         transition={{duration:0.85,ease:"easeInOut"}}
-                    >  <HiX className='ml-16  text-white  bg-slate-700 rounded-3xl p-1 w-9 h-9' onClick={()=>setToggle(false)}/>
+                    >  
                        
-                        <ul className='list-none w-80 h-100 mb-40 p-10 bg-gray-200 rounded-2xl ml-10 z-50 text-xl  font-semibold absolute'> {/* Apply list-none class to remove default list styling */}
-                      
-                            {/* {['Home','About','Project','Hero','Work'].map((item) => (
-                                <li className=' my-10 ' key={item}>
-                                    <a href={`#${item}`} onClick={()=>setToggle(false)}>{item}</a>
-                                </li>
-                                
-                            ))} */}
+                       <div className='flex w-[100vw] justify-between items-center uppercase'>
+  
+                       <ul className='flex justify-center items-center h-screen flex-col  bg-gray-200 rounded-2xl bg-opacity-90  font-semibold text-2xl'> 
+    <div className='flex justify-end items-start mr-[350px] md:mr-[400px] mt-[-250px]'>
+  <HiX className='text-white bg-slate-700 rounded-3xl p-1 w-9 h-9' onClick={() => setToggle(false)} />
+</div>
+        <li  className='mx-10 my-7 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/#userHome'>Home</a></li>
+        <li  className='mx-10 my-7 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/userHome/meet'>About</a></li>
+        <li  className='mx-10 my-7 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/meeting'>Meeting</a></li>
+        <li  className='mx-10 my-7 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/userhome#service'>Service</a></li>
+        <li  className='mx-10 my-7 transition duration-300 cursor-pointer hover:text-blue-600'><a href='/#UContact'>Contact</a></li>
+        <motion.button type='button' onClick={toggleDropDown} className=' mt-10  rounded-xl mx-10 transition duration-300 cursor-pointer'     whileTap={{ scale: 0.7 }}> <img
+            src={img1} // Path to your user profile icon
+            alt="User Profile"
+            className="h-10 w-10 rounded-2xl"
+          /></motion.button>
 
-                            <li>Home</li>
-        
-                        </ul>
+    </ul></div>
                     </motion.div>
                 ) : (
-                    <HiMenuAlt4 className='mr-5 text-white  bg-slate-700 rounded-3xl p-1 w-9 h-9' onClick={()=>setToggle(true)}/>
+                  <div className='flex justify-end'>
+                  <HiMenuAlt4 className='mr-5 justify-end absolute mt-[-60px] text-white  bg-slate-700 rounded-3xl p-1 w-9 h-9' onClick={()=>setToggle(true)}/></div>
                 )}
             </div>
   </div>

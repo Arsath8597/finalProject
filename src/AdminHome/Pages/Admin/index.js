@@ -55,28 +55,25 @@ const handlePopup=()=>{
         });
 };
 
+useEffect(() => {
+  fetchAdmin();
+}, []);
 
-useEffect(()=>{
-  fetch('http://localhost:5000/getAdmin',{
-    method:"GET",
-    headers:{
-      "Content-Type":'application/json'
+const handleDelete = async (adminId) => {
+  try {
+    const response = await fetch(`http://localhost:5000/deleteAdmin/${adminId}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete user');
     }
-  })
-  .then(response=>{
-    if(!response.ok){
-      throw new Error("Network Error")
-    }
-    return response.json();
-  })
-  .then(data=>{
-    setAdmin(data.data)
-  })
-  .catch(error=>{
-    console.error('error fetching Data',error)
-  })
-},[])
-
+    // Refresh user list after successful deletion
+    fetchAdmin();
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    // Handle error here, e.g., show an alert to the user
+  }
+};
 
   useEffect(() => {
     setLoading(true);
@@ -85,6 +82,28 @@ useEffect(()=>{
       setLoading(false);
     });
   }, []);
+
+  const fetchAdmin=()=>{
+    fetch('http://localhost:5000/getAdmin',{
+      method:"GET",
+      headers:{
+        "Content-Type":'application/json'
+      }
+    })
+    .then(response=>{
+      if(!response.ok){
+        throw new Error("Network Error")
+      }
+      return response.json();
+    })
+    .then(data=>{
+      setAdmin(data.data)
+    })
+    .catch(error=>{
+      console.error('error fetching Data',error)
+    })
+  }
+  
 
   return (
     <div className="bg-gradient-to-br from-rose-400 to-white'">
@@ -151,12 +170,12 @@ useEffect(()=>{
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-        {admin.map((adminUser,index)=>
-            <tr key={index}>
+        {admin.map((adminUser)=>
+            <tr key={adminUser._id}>
              <td className="px-5 text-lg py-4  ">{adminUser.fname}</td>
              <td className="px-5 text-lg py-4  ">{adminUser.lname}</td>
              <td className="px-5 text-lg py-4  ">{adminUser.email}</td>
-             <td className="flex"><button className="bg-red-600 px-3 py-2 mx-3 font-sans hover:bg-red-400 text-white rounded-xl">Delete</button>
+             <td className="flex"><button className="bg-red-600 px-3 py-2 mx-3 font-sans hover:bg-red-400 text-white rounded-xl"onClick={() => handleDelete(adminUser._id)} >Delete</button>
              <button className="bg-blue-500 px-5 py-2 mx-3 font-sans hover:bg-blue-300 text-white rounded-xl">Edit</button>
              </td>
             </tr>
@@ -175,3 +194,6 @@ useEffect(()=>{
   );
 }
 export default Orders;
+
+
+

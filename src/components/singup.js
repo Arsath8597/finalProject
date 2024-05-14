@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from "../pages/Navbar";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 export default function Signup() {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -28,17 +31,50 @@ export default function Signup() {
             .then((data) => {
                 console.log(data, "userRegister");
                 if (data.status === "ok") {
-                    alert("Registration Successful");
+                    confirmAlert({
+                        title: 'Alert',
+                        message: 'Register successfully',
+                        buttons: [
+                          {
+                            label: 'Sing in',
+                            onClick: () => {
+                            
+                              // Redirect to another page after clicking "OK"
+                              window.location.href = '/login';
+                            }
+                            
+                          },
+                          {
+                            label: 'Cancel',
+                            onClick: () => {}
+                          }
+                        ]
+                      });
                 } else {
-                    alert("Something went wrong");
+                    confirmAlert({
+                        title: 'Alert',
+                        message: 'Somthing Went Wrong',
+                        buttons: [
+                          {
+                            label: 'ok',
+                            onClick: () => {
+                            
+                              // Redirect to another page after clicking "OK"
+                              window.location.href = '/singup';
+                            }
+                            
+                          },
+                         
+                        ]
+                      });
                 }
             });
     };
 
     return (
-        <div className="flex bg-gradient-to-br from-rose-400 to-white flex-col justify-center items-center h-screen w-screen">
+        <div className="overflow-hidden flex bg-gradient-to-br from-rose-400 to-white flex-col justify-center items-center h-screen w-screen">
                    <Navbar/>
-                          <div className="mt-24 bg-white bg-opacity-20  w-[500px] h-[500px] rounded-xl">
+                          <div className="lg:mt-24 mt-[-150px] px-10 lg:px-0 bg-white bg-opacity-20  w-[500px] h-[500px] rounded-xl">
                 <h1  className="flex  justify-center mb-10 font-bold text-3xl">SING UP</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="my-8 flex justify-center">

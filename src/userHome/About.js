@@ -8,7 +8,7 @@ const Header = () => {
 
 
   return (
-    <div className='flex justify-between mb-10 px-16' id='UHeader'>
+    <div className='lg:flex justify-between mb-10 px-16' id='UHeader'>
         <motion.div
         whileInView={{x:[-100,0],opacity:[0,1]}}
         transition={{duration:1}}
@@ -27,7 +27,7 @@ const Header = () => {
         <motion.div
         whileInView={{x:[100,0],opacity:[0,1]}}
         transition={{duration:0.8}}
-        className='w-[1200px]'
+        className='lg:w-[1200px]'
         >
             <img src={image}/>
             {/* <motion.img

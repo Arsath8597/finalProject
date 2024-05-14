@@ -1,14 +1,14 @@
 import React from 'react'
 import Navbar from '../pages/Navbar'
 import Home from '../pages/Home'
-import Meeting from '../pages/Meeting'
+import Meeting from '../pages/Service'
 import Contact from '../pages/Contact'
 import Footer from '../pages/Footer'
 import About from '../pages/About'
 
 export const Landing = () => {
   return (
-    <div>
+    <div className='overflow-x-hidden'>
         <Navbar/>
         <Home />
         <About/>

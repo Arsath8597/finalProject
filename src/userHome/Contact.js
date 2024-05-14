@@ -4,7 +4,7 @@ import{motion}  from 'framer-motion'
 
 const Project = () => {
   return (
-    <div className='mt-16 h-[70vh]'  id='UContact'>
+    <div className='mt-16 h-[70vh]'  id='Contact'>
       
       <motion.div
         whileInView={{y:[-50,0],opacity:[0,1]}}
@@ -20,32 +20,32 @@ const Project = () => {
         transition={{duration:1.1}
       }>
   <div >
-    <motion.div  className=''>
+    <motion.div  className='grid '>
       <h1 className='text-xl font-semibold mb-3'>Office Adddress</h1>
       <p>4455,galle road ,colombo<br/>
       343,Pettah,Colombo 11</p>
     </motion.div >
-    <motion.div className='my-10 '>
+    <motion.div className='my-10  grid lg:flex'>
       <h1 className='text-xl font-semibold mb-3'>Email</h1>
       <p>arsath@gmail.com</p>
     </motion.div>
-    <motion.div className='my-10'>
+    <motion.div className='my-10 grid lg:flex'>
       <h1 className='text-xl font-semibold mb-3'>Phone</h1>
       <p>+94 0112233443</p>
     </motion.div>
   </div>
       
         <div>
-          <div>
+          <div className='grid lg:flex'>
             <input className='py-3 px-10  bg-gray-50' type='text' placeholder='Enter Your Name'/>
             <input className='py-3 px-10 bg-gray-50 mx-5' type='text' placeholder='Enter Your Email'/>
           </div>
-          <div>
-            <input  className='py-3 px-44 my-16 bg-gray-50' placeholder='Enter Your Subject'/>
+          <div className='grid lg:flex'>
+            <input  className='py-3 lg:px-44 my-16 bg-gray-50' placeholder='Enter Your Subject'/>
           </div>
-          <div>
-          <textarea className='py-3 px-44  bg-gray-50' type="text" placeholder="enter Your Message"/></div>
-          <div className='flex justify-end'><motion.button className='bg-red-400 text-white py-3 mt-8  px-5 rounded-xl '>Send Message</motion.button></div>
+          <div className='grid lg:flex'>
+          <textarea className='py-3 lg:px-44  bg-gray-50' type="text" placeholder="enter Your Message"/></div>
+          <div className='flex lg:justify-end'><motion.button className='bg-red-400 text-white py-3 mt-8  lg:px-5 rounded-xl '>Send Message</motion.button></div>
         </div>
         </motion.div>
       

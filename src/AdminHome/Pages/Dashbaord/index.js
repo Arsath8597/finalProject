@@ -20,7 +20,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import Orders from "../Orders";
+import Orders from "../Admin";
 
 
 ChartJS.register(
@@ -109,7 +109,7 @@ useEffect(()=>{
 },[])
 
 const data = {
-  labels: ["May 1", "May 2", "May 3", "May 4", "May 5"],
+  labels: ["Total Shedule ", "Meeting", "Toatal users", "Total Admin"],
   datasets: [
     {
       label: "User Registration Count",
@@ -192,7 +192,8 @@ return (
       <Space>
         
         <BarChart/>
-        <DashboardChart />
+        <Chart/>
+     
       </Space>
     </Space></div></div>
   );
@@ -212,7 +213,7 @@ function DashboardCard({ title, value, icon }) {
 const BarChart = () => {
   // Sample data (replace with your actual data)
   const data = {
-    labels: ["May 1", "May 2", "May 3", "May 4", "May 5"],
+    labels: ["January ", "February", "March", "April","May",],
     datasets: [
       {
         label: "User Registration Count",
@@ -221,7 +222,41 @@ const BarChart = () => {
         borderWidth: 1,
         hoverBackgroundColor: "rgba(54, 162, 235, 0.7)",
         hoverBorderColor: "rgba(54, 162, 235, 1)",
-        data: [10, 15, 20, 18, 25],
+        data: [5, 5, 12, 10, 8],
+      },
+    ],
+  };
+
+  return (
+    <div className="w-full flex items-center justify-center rounded-2xl shadow-2xl ml-10 max-w-xl px-20 bg-white h-[300px] mx-auto mt-8">
+      <Bar className=""
+        data={data}
+        options={{
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        }}
+      />
+    </div>
+  );
+};
+
+
+const Chart = () => {
+  // Sample data (replace with your actual data)
+  const data = {
+    labels: ["Total Shedule ", "Meeting", "Toatal users", "Total Admin"],
+    datasets: [
+      {
+        label: "Admin Dashboard Count",
+        backgroundColor: "rgb(54, 162, 235)",
+        borderColor: "rgb(54, 162, 235)",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(54, 162, 235, 0.7)",
+        hoverBorderColor: "rgba(54, 162, 235, 1)",
+        data: [45, 35, 25, 28, 15],
       },
     ],
   };

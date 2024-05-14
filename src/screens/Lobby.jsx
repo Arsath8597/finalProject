@@ -46,7 +46,7 @@ const LobbyScreen = () => {
         <label className="font-semibold text-xl my-10" htmlFor="email">Room Email</label>
         <input
    className="w-full py-2 my-3 px-4 rounded-lg shadow-xl"
-          type="email"
+          type="text"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -61,7 +61,7 @@ const LobbyScreen = () => {
           onChange={(e) => setRoom(e.target.value)}
         />
         <br />
-        <button className="py-2 rounded-xl mt-4 font-semibold px-8 text-white text-xl bg-blue-600">Join</button>
+        <button className="py-3 text-center ml-24 rounded-xl mt-6 font-semibold px-16 text-white text-xl bg-blue-600">Join</button>
       </form>
       </div>
     </div></div>
